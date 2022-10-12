@@ -18,13 +18,13 @@ namespace CarBookingApp.Pages.Cars
             _context = context;
         }
 
-        public IList<Car> Car { get;set; } = default!;
+        public IList<Car> Cars { get;set; } = default!;
 
         public async Task OnGetAsync()
         {
             if (_context.Car != null)
             {
-                Car = await _context.Car.ToListAsync();
+                Cars = await _context.Car.ToListAsync();
             }
         }
     }
