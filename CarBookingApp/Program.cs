@@ -1,10 +1,13 @@
-using CarBookingApp.Data;
+﻿using CarBookingApp.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddDbContext<CarBookingAppContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("CarBookingAppContext") ?? throw new InvalidOperationException("Connection string 'CarBookingAppContext' not found.")));
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<CarBookingAppDbContext>(options =>
